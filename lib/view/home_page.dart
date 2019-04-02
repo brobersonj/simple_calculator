@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:dynamic_theme/dynamic_theme.dart';
+import 'package:simple_calculator/view/calculation_display.dart';
+import 'package:simple_calculator/view/calculator_buttons.dart';
 
 class HomePage extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-      return MaterialApp(
-      title: 'Simple Calculator',
-      theme: ThemeData(
-        primaryColor: Colors.white,
-        brightness: Brightness.light,
-      ),
-      home: CalculatorHomePage(title: 'Simple Calculator'),
-    );
+      return DynamicTheme(
+        defaultBrightness: Brightness.light,
+        data: (brightness) => ThemeData(
+          primaryColor: Colors.white,
+          brightness: brightness,
+        ),
+        themedWidgetBuilder: (context, theme) {
+          return MaterialApp(
+            title: 'Simple Calculator',
+            theme: theme,
+            home: CalculatorHomePage(title: 'Simple Calculator'),
+          );
+        }
+      );
   }
 }
 
@@ -32,7 +41,6 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
   List<String> operations = [];
   List<String> calculations = [];
   String calculatorString = '';
-  Brightness brightness;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +51,7 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
               IconButton(
                 icon: Icon(Icons.brightness_3),
                 onPressed: () {
-                  _changeThemeBrightness(context);
+                  changeThemeBrightness();
                 },
               ),
             ],
@@ -51,23 +59,21 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
         ),
         body: Column(
           children: <Widget>[
-            //NumberDisplay(value: calculatorString),
-            //CalculatorButtons(onTap: _onPressed),
+            CalculationDisplay(value: calculatorString),
+            CalculatorButtons(onTap: _onPressed),
           ],
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        ));
+        )
+    );
   }
 
-  _changeThemeBrightness(BuildContext context) async {
-      setState(() {
-        //brightness = context.;
-        //isNewEquation = false;
-        //calculatorString = Calculator.parseString(result);
-      });
-    
+  void changeThemeBrightness() {
+    DynamicTheme.of(context).setBrightness(
+      Theme.of(context).brightness == Brightness.dark? Brightness.light: Brightness.dark
+      );    
   }
 
-  // void _onPressed({String buttonText}) {
+  void _onPressed({String buttonText}) {
   //   // Standard mathematical operations
   //   if (Calculations.OPERATIONS.contains(buttonText)) {
   //     return setState(() {
@@ -117,5 +123,5 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
   //       calculatorString += buttonText;
   //     }
   //   });
-  //}
+  }
 }
