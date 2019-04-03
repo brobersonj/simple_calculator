@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dynamic_theme/dynamic_theme.dart';
+import 'package:simple_calculator/model/calculations.dart';
+import 'package:simple_calculator/service/calculation_service.dart';
 import 'package:simple_calculator/view/calculation_display.dart';
 import 'package:simple_calculator/view/calculator_buttons.dart';
 
@@ -74,54 +76,56 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
   }
 
   void _onPressed({String buttonText}) {
-  //   // Standard mathematical operations
-  //   if (Calculations.OPERATIONS.contains(buttonText)) {
-  //     return setState(() {
-  //       operations.add(buttonText);
-  //       calculatorString += " $buttonText ";
-  //     });
-  //   }
+    // Standard mathematical operations
+    if (Calculations.OPERATIONS.contains(buttonText)) {
+      return setState(() {
+        operations.add(buttonText);
+        calculatorString += " $buttonText ";
+      });
+    }
 
-  //   // On CLEAR press
-  //   if (buttonText == Calculations.CLEAR) {
-  //     return setState(() {
-  //       operations.add(Calculations.CLEAR);
-  //       calculatorString = "";
-  //     });
-  //   }
+    // On CLEAR press
+    if (buttonText == Calculations.CLEAR) {
+      return setState(() {
+        operations.add(Calculations.CLEAR);
+        calculatorString = "";
+      });
+    }
 
-  //   // On Equals press
-  //   if (buttonText == Calculations.EQUAL) {
-  //     String newCalculatorString = Calculator.parseString(calculatorString);
+    // On Equals press
+    if (buttonText == Calculations.EQUAL) {
+      String newCalculatorString = CalculationService.parseString(calculatorString);
 
-  //     return setState(() {
-  //       if (newCalculatorString != calculatorString) {
-  //         // only add evaluated strings to calculations array
-  //         calculations.add(calculatorString);
-  //       }
+      return setState(() {
+        if (newCalculatorString != calculatorString) {
+          // only add evaluated strings to calculations array
+          calculations.add(calculatorString);
+        }
 
-  //       operations.add(Calculations.EQUAL);
-  //       calculatorString = newCalculatorString;
-  //       isNewEquation = false;
-  //     });
-  //   }
+        operations.add(Calculations.EQUAL);
+        calculatorString = newCalculatorString;
+        isNewEquation = false;
+      });
+    }
 
-  //   if (buttonText == Calculations.PERIOD) {
-  //     return setState(() {
-  //       calculatorString = Calculator.addPeriod(calculatorString);
-  //     });
-  //   }
+    if (buttonText == Calculations.PERIOD) {
+      return setState(() {
+        calculatorString = CalculationService.addPeriod(calculatorString);
+      });
+    }
 
-  //   setState(() {
-  //     if (!isNewEquation
-  //         && operations.length > 0
-  //         && operations.last == Calculations.EQUAL
-  //     ) {
-  //       calculatorString = buttonText;
-  //       isNewEquation = true;
-  //     } else {
-  //       calculatorString += buttonText;
-  //     }
-  //   });
+    setState(() {
+      if (!isNewEquation
+          && operations.length > 0
+          && operations.last == Calculations.EQUAL
+      ) {
+        calculatorString = buttonText;
+        isNewEquation = true;
+      
+      } else {
+        calculatorString += buttonText;
+      
+      }
+    });
   }
 }

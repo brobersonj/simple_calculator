@@ -14,6 +14,7 @@ class Calculations {
     Calculations.MULTIPLY,
     Calculations.SUBTRACT,
     Calculations.DIVIDE,
+    Calculations.PERCENT,
   ];
 
   static double add(double a, double b) {
