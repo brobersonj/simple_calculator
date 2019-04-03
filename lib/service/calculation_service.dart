@@ -13,7 +13,7 @@ class CalculationService {
       numbersToCalculate = text.split(Calculations.ADD);
       a = double.parse(numbersToCalculate[0]);
       b = double.parse(numbersToCalculate[1]);
-      result = Calculations.add(a,b);
+      result = Calculations.add(a, b);
     
     } else if (text.contains(Calculations.MULTIPLY)) {
       numbersToCalculate = text.split(Calculations.MULTIPLY);
