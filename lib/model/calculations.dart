@@ -6,8 +6,8 @@ class Calculations {
   static const ADD = '+';
   static const DIVIDE = '/';
   static const PERCENT = '%';
-  static const CLEAR = 'CLEAR';
-  static const DELETE = 'DELETE';
+  static const CLEAR = 'C';
+  static const DELETE = 'Del';
   static const EQUAL = '=';
   static const OPERATIONS = [
     Calculations.ADD,
