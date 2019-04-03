@@ -92,6 +92,22 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
       });
     }
 
+    // On DELETE press
+    if (buttonText == Calculations.DELETE) {
+      return setState(() {
+        operations.add(Calculations.DELETE);
+      
+        if (calculatorString.length != 0) {
+          calculatorString = calculatorString.substring(0, calculatorString.length - 1);
+        
+        } else {
+          calculatorString = "";
+        
+        }
+        
+      });
+    }
+
     // On Equals press
     if (buttonText == Calculations.EQUAL) {
       String newCalculatorString = CalculationService.parseString(calculatorString);
