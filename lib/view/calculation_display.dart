@@ -15,7 +15,8 @@ class CalculationDisplay extends StatelessWidget {
             value,
             style: TextStyle(
               fontSize: 40,
-              fontWeight: FontWeight.bold
+              fontWeight: FontWeight.bold,
+              fontFamily: 'RobotoBlack'
             ),
           )
         ],

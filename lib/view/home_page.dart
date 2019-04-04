@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
         data: (brightness) => ThemeData(
           primaryColor: Colors.white,
           brightness: brightness,
+          fontFamily: 'RobotoBlack',
         ),
         themedWidgetBuilder: (context, theme) {
           return MaterialApp(

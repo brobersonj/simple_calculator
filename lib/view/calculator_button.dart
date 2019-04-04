@@ -17,8 +17,8 @@ class CalculatorButton extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500
+              fontSize: 28,
+              fontWeight: FontWeight.w500,
             ),
           ),
           padding: EdgeInsets.all(30),
