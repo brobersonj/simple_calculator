@@ -3,6 +3,7 @@ import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:simple_calculator/model/calculations.dart';
 import 'package:simple_calculator/service/calculation_service.dart';
 import 'package:simple_calculator/view/calculation_display.dart';
+import 'package:simple_calculator/view/calculation_total_display.dart';
 import 'package:simple_calculator/view/calculator_buttons.dart';
 
 class HomePage extends StatelessWidget {
@@ -44,6 +45,8 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
   List<String> operations = [];
   List<String> calculations = [];
   String calculatorString = '';
+  String calculatorTotalString = '';
+  
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +66,7 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
         body: Column(
           children: <Widget>[
             CalculationDisplay(value: calculatorString),
+            CalculationTotalDisplay(value: calculatorTotalString),
             CalculatorButtons(onTap: _onPressed),
           ],
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,6 +94,7 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
       return setState(() {
         operations.add(Calculations.CLEAR);
         calculatorString = "";
+        calculatorTotalString = "";
       });
     }
 
@@ -120,7 +125,7 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
         }
 
         operations.add(Calculations.EQUAL);
-        calculatorString = newCalculatorString;
+        calculatorTotalString = newCalculatorString;
         isNewEquation = false;
       });
     }

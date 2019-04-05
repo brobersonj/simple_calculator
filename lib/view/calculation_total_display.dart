@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CalculationDisplay extends StatelessWidget {
-  CalculationDisplay({this.value: ''});
+class CalculationTotalDisplay extends StatelessWidget {
+  CalculationTotalDisplay({this.value: ''});
 
   final String value;
 
@@ -14,8 +14,8 @@ class CalculationDisplay extends StatelessWidget {
           Text(
             value,
             style: TextStyle(
-              fontSize: 30,
-              fontFamily: 'RobotoRegular'
+              fontSize: 60,
+              fontFamily: 'RobotoBlack'
             ),
           )
         ],
