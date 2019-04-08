@@ -5,6 +5,7 @@ import 'package:simple_calculator/service/calculation_service.dart';
 import 'package:simple_calculator/view/calculation_display.dart';
 import 'package:simple_calculator/view/calculation_total_display.dart';
 import 'package:simple_calculator/view/calculator_buttons.dart';
+import 'package:math_expressions/math_expressions.dart';
 
 class HomePage extends StatelessWidget {
   // This widget is the root of your application.
@@ -81,6 +82,7 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
   }
 
   void _onPressed({String buttonText}) {
+    
     // Standard mathematical operations
     if (Calculations.OPERATIONS.contains(buttonText)) {
       return setState(() {
@@ -114,27 +116,32 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
       });
     }
 
-    // On Equals press
+    // // On Equals press
     if (buttonText == Calculations.EQUAL) {
-      String newCalculatorString = CalculationService.parseString(calculatorString);
+      
+      calculatorTotalString = CalculationService.parseInput(calculatorString);
 
-      return setState(() {
-        if (newCalculatorString != calculatorString) {
-          // only add evaluated strings to calculations array
-          calculations.add(calculatorString);
-        }
 
-        operations.add(Calculations.EQUAL);
-        calculatorTotalString = newCalculatorString;
-        isNewEquation = false;
-      });
+ 
+    //   String newCalculatorString = CalculationService.parseString(calculatorString);
+
+    //   return setState(() {
+    //     if (newCalculatorString != calculatorString) {
+    //       // only add evaluated strings to calculations array
+    //       calculations.add(calculatorString);
+    //     }
+
+    //     operations.add(Calculations.EQUAL);
+    //     calculatorTotalString = newCalculatorString;
+    //     isNewEquation = false;
+    //   });
     }
 
-    if (buttonText == Calculations.PERIOD) {
-      return setState(() {
-        calculatorString = CalculationService.addPeriod(calculatorString);
-      });
-    }
+    // if (buttonText == Calculations.PERIOD) {
+    //   return setState(() {
+    //     calculatorString = CalculationService.addPeriod(calculatorString);
+    //   });
+    // }
 
     setState(() {
       if (!isNewEquation
@@ -144,9 +151,9 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
         calculatorString = buttonText;
         isNewEquation = true;
       
-      } else {
+      } else {              
         calculatorString += buttonText;
-      
+
       }
     });
   }

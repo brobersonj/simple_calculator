@@ -1,20 +1,33 @@
-
-import 'dart:collection';
-
+import 'package:math_expressions/math_expressions.dart';
 import 'package:simple_calculator/model/calculations.dart';
 import 'package:simple_calculator/utils/number_formatter.dart';
 
+ContextModel contextModel = new ContextModel();
+Expression _lastExpression;
+String _result;
+
 class CalculationService {
-  static Queue<String> convertInfixToRPN(String text) {
-    Queue<String> queue = new Queue<String>();
-    Queue<String> stack = new Queue<String>();
-    List<String> infixNotation = text.split(",");
 
-    //for (String )
-
-
-    return queue;
+  static String parseInput(String input) {
+    _setExpr(input.trim());
+    
+    return _result;
   }
+
+
+  static void _setExpr(String input) {
+    var expr = new Parser().parse(input);
+
+    _lastExpression = expr;
+    _evaluate();
+  }
+
+  static void _evaluate() {
+    double eval = _lastExpression.evaluate(EvaluationType.REAL, contextModel);
+    _result = NumberFormatter.format(eval.toString());
+
+  }
+
   static String parseString(String text) {
     // List<String> numbersToCalculate;
     // double a;
