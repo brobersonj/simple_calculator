@@ -5,7 +5,6 @@ import 'package:simple_calculator/service/calculation_service.dart';
 import 'package:simple_calculator/view/calculation_display.dart';
 import 'package:simple_calculator/view/calculation_total_display.dart';
 import 'package:simple_calculator/view/calculator_buttons.dart';
-import 'package:math_expressions/math_expressions.dart';
 
 class HomePage extends StatelessWidget {
   // This widget is the root of your application.
@@ -116,32 +115,15 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
       });
     }
 
-    // // On Equals press
+    // On Equals press
     if (buttonText == Calculations.EQUAL) {
-      
-      calculatorTotalString = CalculationService.parseInput(calculatorString);
-
-
- 
-    //   String newCalculatorString = CalculationService.parseString(calculatorString);
-
-    //   return setState(() {
-    //     if (newCalculatorString != calculatorString) {
-    //       // only add evaluated strings to calculations array
-    //       calculations.add(calculatorString);
-    //     }
-
-    //     operations.add(Calculations.EQUAL);
-    //     calculatorTotalString = newCalculatorString;
-    //     isNewEquation = false;
-    //   });
+       return setState(() {
+         calculatorTotalString = CalculationService.parseInput(calculatorString);
+         calculatorString = "";
+         calculatorString = calculatorTotalString;
+         calculatorTotalString = "";
+       });
     }
-
-    // if (buttonText == Calculations.PERIOD) {
-    //   return setState(() {
-    //     calculatorString = CalculationService.addPeriod(calculatorString);
-    //   });
-    // }
 
     setState(() {
       if (!isNewEquation
@@ -151,8 +133,16 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
         calculatorString = buttonText;
         isNewEquation = true;
       
-      } else {              
-        calculatorString += buttonText;
+      } else {
+
+        if (calculatorString.trim().length >= 3) {
+          calculatorString += buttonText;
+          calculatorTotalString = CalculationService.parseInput(calculatorString);
+          
+        } else {
+          calculatorString += buttonText;
+
+        }              
 
       }
     });
