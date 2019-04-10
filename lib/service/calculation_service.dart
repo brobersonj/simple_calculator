@@ -10,16 +10,15 @@ class CalculationService {
 
   static String parseInput(String input) {
     _setExpr(input.trim());
-    
     return _result;
-  }
 
+  }
 
   static void _setExpr(String input) {
     var expr = new Parser().parse(input);
-
     _lastExpression = expr;
     _evaluate();
+
   }
 
   static void _evaluate() {
@@ -51,6 +50,7 @@ class CalculationService {
     }
 
     return false;
+    
   }
 
 }

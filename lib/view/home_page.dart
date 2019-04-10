@@ -41,9 +41,6 @@ class CalculatorHomePage extends StatefulWidget {
 
 class _CalculatorHomePageState extends State<CalculatorHomePage> {
   bool isNewEquation = true;
-  List<double> values = [];
-  List<String> operations = [];
-  List<String> calculations = [];
   String calculatorString = '';
   String calculatorTotalString = '';
   
@@ -81,11 +78,9 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
   }
 
   void _onPressed({String buttonText}) {
-    
     // Standard mathematical operations
     if (Calculations.OPERATIONS.contains(buttonText)) {
       return setState(() {
-        operations.add(buttonText);
         calculatorString += " $buttonText ";
       });
     }
@@ -93,7 +88,6 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
     // On CLEAR press
     if (buttonText == Calculations.CLEAR) {
       return setState(() {
-        operations.add(Calculations.CLEAR);
         calculatorString = "";
         calculatorTotalString = "";
       });
@@ -101,9 +95,7 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
 
     // On DELETE press
     if (buttonText == Calculations.DELETE) {
-      return setState(() {
-        operations.add(Calculations.DELETE);
-      
+      return setState(() {      
         if (calculatorString.length != 0) {
           calculatorString = calculatorString.substring(0, calculatorString.length - 1);
         
@@ -126,15 +118,11 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
     }
 
     setState(() {
-      if (!isNewEquation
-          && operations.length > 0
-          && operations.last == Calculations.EQUAL
-      ) {
+      if (!isNewEquation) {
         calculatorString = buttonText;
         isNewEquation = true;
       
       } else {
-
         if (calculatorString.trim().length >= 3) {
           calculatorString += buttonText;
           calculatorTotalString = CalculationService.parseInput(calculatorString);
@@ -147,4 +135,5 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
       }
     });
   }
+
 }
