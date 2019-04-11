@@ -12,6 +12,7 @@ class CalculatorButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
+        padding: EdgeInsets.all(11.0),
         child: FlatButton(
           onPressed: () => onTap(buttonText: text),
           child: Text(
@@ -21,7 +22,9 @@ class CalculatorButton extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          padding: EdgeInsets.all(30),
+          padding: EdgeInsets.all(20.0),
+          color: const Color(0xffF0F0F0),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
           highlightColor: Colors.blueGrey[100],
           splashColor: Colors.blueAccent[100],
         ),

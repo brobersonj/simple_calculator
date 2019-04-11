@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   dynamic_theme:
   math_expressions: ^1.0.0
+  auto_size_text: ^1.1.2
 
 dev_dependencies:
   flutter_test:

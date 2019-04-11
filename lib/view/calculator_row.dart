@@ -33,7 +33,7 @@ class CalculatorRow extends StatelessWidget {
             onTap: onTap,
           ),
         );
-        
+
       } else {
         rowButtons.add(
           CalculatorButton(
