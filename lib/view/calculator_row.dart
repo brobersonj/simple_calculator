@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simple_calculator/model/calculations.dart';
 import 'package:simple_calculator/view/calculator_button.dart';
+import 'package:simple_calculator/view/operation_button.dart';
 
 
 class CalculatorRow extends StatelessWidget {
@@ -21,12 +23,26 @@ class CalculatorRow extends StatelessWidget {
     List<Widget> rowButtons = [];
 
     buttons.forEach((String buttonText) {
-      rowButtons.add(
-        CalculatorButton(
-          text: buttonText,
-          onTap: onTap,
-        ),
-      );
+      if (Calculations.OPERATIONS.contains(buttonText) || 
+          Calculations.CLEAR.contains(buttonText) ||
+          Calculations.DELETE.contains(buttonText)) {
+
+        rowButtons.add(
+          OperationButton(
+            text: buttonText,
+            onTap: onTap,
+          ),
+        );
+        
+      } else {
+        rowButtons.add(
+          CalculatorButton(
+            text: buttonText,
+            onTap: onTap,
+          ),
+        );
+      }
+
     });
 
     return rowButtons;
